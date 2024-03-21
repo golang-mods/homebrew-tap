@@ -5,20 +5,20 @@
 class Tango < Formula
   desc ""
   homepage ""
-  version "1.0.1"
+  version "1.0.2"
 
   on_macos do
-    if Hardware::CPU.intel?
-      url "https://github.com/golang-mods/tango/releases/download/v1.0.1/tango_Darwin_x86_64.tar.gz"
-      sha256 "22e7d245bff7ede837092eaa9f08233413b2ee92110346426bafc80387564b38"
+    if Hardware::CPU.arm?
+      url "https://github.com/golang-mods/tango/releases/download/v1.0.2/tango_Darwin_arm64.tar.gz"
+      sha256 "e0e26e7913f62c3f2ecf012e50fd677d1b7ca143bcafed353b5cd3373b0faefd"
 
       def install
         bin.install "tango"
       end
     end
-    if Hardware::CPU.arm?
-      url "https://github.com/golang-mods/tango/releases/download/v1.0.1/tango_Darwin_arm64.tar.gz"
-      sha256 "ab8f738f7ad8f9680f0666643d7dabd406e5a249656d6f2207a9a4841d0b0453"
+    if Hardware::CPU.intel?
+      url "https://github.com/golang-mods/tango/releases/download/v1.0.2/tango_Darwin_x86_64.tar.gz"
+      sha256 "7d333864aa10d5974c6677328010c24a6e520fb5fdb1e8481a62f281f65375b4"
 
       def install
         bin.install "tango"
@@ -27,17 +27,17 @@ class Tango < Formula
   end
 
   on_linux do
-    if Hardware::CPU.intel?
-      url "https://github.com/golang-mods/tango/releases/download/v1.0.1/tango_Linux_x86_64.tar.gz"
-      sha256 "a2c91d69502de865bb867d37d3e662ce3716fb751abf653b1d327faeb69179f9"
+    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
+      url "https://github.com/golang-mods/tango/releases/download/v1.0.2/tango_Linux_arm64.tar.gz"
+      sha256 "d244dde7a561252923ad794ba8b734d0cd03c440887c2929933416f273ca105f"
 
       def install
         bin.install "tango"
       end
     end
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/golang-mods/tango/releases/download/v1.0.1/tango_Linux_arm64.tar.gz"
-      sha256 "97c0dddc9bc6633ed9f0c7307e810bc8993acf3672cd55de8fec871b3f243ab7"
+    if Hardware::CPU.intel?
+      url "https://github.com/golang-mods/tango/releases/download/v1.0.2/tango_Linux_x86_64.tar.gz"
+      sha256 "5b62f412c876c4ccad16b8803fd493aca6e0af9f109c1325b093a554f70e7f7f"
 
       def install
         bin.install "tango"
