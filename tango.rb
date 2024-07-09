@@ -5,20 +5,20 @@
 class Tango < Formula
   desc ""
   homepage ""
-  version "1.0.3"
+  version "1.1.0"
 
   on_macos do
-    if Hardware::CPU.arm?
-      url "https://github.com/golang-mods/tango/releases/download/v1.0.3/tango_Darwin_arm64.tar.gz"
-      sha256 "d34b3b73ac829b9468a60a71ad3bd41c36aea8b5067cc85c69a5de8d35333140"
+    on_intel do
+      url "https://github.com/golang-mods/tango/releases/download/v1.1.0/tango_Darwin_x86_64.tar.gz"
+      sha256 "d1fd2d8ab36d37c757aa48bca973c9700970a8b33c63ed2dc6b8c76b084f7d47"
 
       def install
         bin.install "tango"
       end
     end
-    if Hardware::CPU.intel?
-      url "https://github.com/golang-mods/tango/releases/download/v1.0.3/tango_Darwin_x86_64.tar.gz"
-      sha256 "ed945905b112d4b2aae0eab44be5a99a2779ea60b623808841eee0159658024b"
+    on_arm do
+      url "https://github.com/golang-mods/tango/releases/download/v1.1.0/tango_Darwin_arm64.tar.gz"
+      sha256 "48b0c6376b3bbe4d0a8d1a33ce578ed585ff8291e1240b21dbe90526e523e489"
 
       def install
         bin.install "tango"
@@ -27,20 +27,24 @@ class Tango < Formula
   end
 
   on_linux do
-    if Hardware::CPU.intel?
-      url "https://github.com/golang-mods/tango/releases/download/v1.0.3/tango_Linux_x86_64.tar.gz"
-      sha256 "9fca09ad05310ebb3677382d3e6395fdb2e03799dae59a859c505977b54ec8f8"
+    on_intel do
+      if Hardware::CPU.is_64_bit?
+        url "https://github.com/golang-mods/tango/releases/download/v1.1.0/tango_Linux_x86_64.tar.gz"
+        sha256 "f6530cad0136c3d58d6b2b3250114fe0ea5e28d5cb03d44f3f704ecc9fd03840"
 
-      def install
-        bin.install "tango"
+        def install
+          bin.install "tango"
+        end
       end
     end
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/golang-mods/tango/releases/download/v1.0.3/tango_Linux_arm64.tar.gz"
-      sha256 "da8ae3287eaa9c72537bb8a14728ec7c4370b74adf16a6381ca4a710a276819a"
+    on_arm do
+      if Hardware::CPU.is_64_bit?
+        url "https://github.com/golang-mods/tango/releases/download/v1.1.0/tango_Linux_arm64.tar.gz"
+        sha256 "258effcd49bbebdab8fae22876f3593052763e716af77f491a016dbf82c80ff3"
 
-      def install
-        bin.install "tango"
+        def install
+          bin.install "tango"
+        end
       end
     end
   end
